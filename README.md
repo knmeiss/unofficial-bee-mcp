@@ -1,16 +1,31 @@
-# bee-mcp
+# unofficial-bee-mcp
 
-> **Disclaimer:** This is an unofficial community project. It is not made by, endorsed by, or affiliated with [Bee](https://bee.computer) in any way. Use at your own discretion.
+> **Disclaimer:** This is an unofficial community project. It is not made by, endorsed by, or affiliated with [Bee](https://bee.computer) in any way. "Bee" is a trademark of Bluush Inc. Use at your own discretion.
 
 MCP server that connects Bee AI wearable data to Claude Code.
 
 Wraps the Bee CLI so you can search conversations, manage facts and todos, read journals, and get daily summaries — all from within Claude Code.
+
+## Privacy and Data Flow
+
+When you use this MCP server, your Bee data (conversations, facts, todos, journals) is sent to the AI model as tool results. This means:
+
+- **Conversation transcripts** captured by your Bee device will be sent to Anthropic's API when you ask questions about them
+- **Personal facts** extracted by Bee (contacts, preferences, details about your life) may be included in API calls
+- Data is processed according to [Anthropic's usage policies](https://www.anthropic.com/policies)
+- No data is stored or transmitted by this MCP server itself — it only passes data between the Bee CLI and Claude
+
+Consider what you're comfortable sharing before asking broad questions like "tell me everything Bee knows about me."
 
 ## Prerequisites
 
 - Node.js >= 18
 - [Bee CLI](https://www.npmjs.com/package/@beeai/cli) installed: `npm install -g @beeai/cli`
 - Authenticated: `bee login`
+
+## Compatibility
+
+Tested with `@beeai/cli` version 0.4.5. Other versions may work but are not guaranteed — if Bee changes their CLI flags or output format, tools may break.
 
 ## Quick Start
 
@@ -21,22 +36,19 @@ Add to your Claude Code MCP config (`~/.claude/settings.json`):
   "mcpServers": {
     "bee": {
       "command": "npx",
-      "args": ["-y", "bee-mcp"]
+      "args": ["-y", "github:knmeiss/unofficial-bee-mcp"]
     }
   }
 }
 ```
 
-Or if installed globally (`npm install -g bee-mcp`):
+Or clone and run locally:
 
-```json
-{
-  "mcpServers": {
-    "bee": {
-      "command": "bee-mcp"
-    }
-  }
-}
+```bash
+git clone https://github.com/knmeiss/unofficial-bee-mcp.git
+cd bee-mcp
+npm install && npm run build
+claude mcp add bee-mcp -- node /path/to/bee-mcp/dist/index.js
 ```
 
 ## Available Tools
@@ -84,7 +96,7 @@ Or if installed globally (`npm install -g bee-mcp`):
 ## Development
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/knmeiss/unofficial-bee-mcp.git
 cd bee-mcp
 npm install
 npm run build

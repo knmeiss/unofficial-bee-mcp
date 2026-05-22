@@ -1,10 +1,10 @@
 {
-  "name": "bee-mcp",
+  "name": "unofficial-bee-mcp",
   "version": "0.1.0",
   "description": "MCP server that connects Bee AI wearable data to Claude Code via the Bee CLI",
   "type": "module",
   "bin": {
-    "bee-mcp": "./dist/index.js"
+    "unofficial-bee-mcp": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "scripts": {
