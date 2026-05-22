@@ -1,0 +1,38 @@
+{
+  "name": "bee-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that connects Bee AI wearable data to Claude Code via the Bee CLI",
+  "type": "module",
+  "bin": {
+    "bee-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "execa": "^9.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "mcp",
+    "bee",
+    "claude",
+    "ai",
+    "wearable"
+  ],
+  "license": "MIT"
+}
