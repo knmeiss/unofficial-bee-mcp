@@ -32,6 +32,25 @@ export async function executeBee<T = unknown>(
   }
 }
 
+export async function executeBeeRaw(options: BeeCliOptions): Promise<string> {
+  const { args, timeout = 30000 } = options;
+
+  try {
+    const result = await execa("bee", args, {
+      timeout,
+      env: {
+        ...process.env,
+        NO_COLOR: "1",
+        CI: "1",
+      },
+    });
+
+    return result.stdout;
+  } catch (error: unknown) {
+    throw classifyError(error);
+  }
+}
+
 function isExecaError(
   error: unknown,
 ): error is { code?: string; exitCode?: number; stderr?: string; stdout?: string } {

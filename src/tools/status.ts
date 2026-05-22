@@ -1,5 +1,5 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
-import { executeBee } from "../cli.js";
+import { executeBee, executeBeeRaw } from "../cli.js";
 import { BeeCliError } from "../errors.js";
 
 export const statusTools: Tool[] = [
@@ -63,8 +63,8 @@ export async function handleStatusTool(
   try {
     switch (name) {
       case "bee_status": {
-        const data = await executeBee({ args: ["status"] });
-        return { content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }] };
+        const output = await executeBeeRaw({ args: ["status"] });
+        return { content: [{ type: "text" as const, text: output }] };
       }
       case "bee_me": {
         const data = await executeBee({ args: ["me"] });
