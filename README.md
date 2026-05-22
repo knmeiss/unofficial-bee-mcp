@@ -1,6 +1,8 @@
 # bee-mcp
 
-MCP server that connects [Bee](https://bee.computer) AI wearable data to Claude Code.
+> **Disclaimer:** This is an unofficial community project. It is not made by, endorsed by, or affiliated with [Bee](https://bee.computer) in any way. Use at your own discretion.
+
+MCP server that connects Bee AI wearable data to Claude Code.
 
 Wraps the Bee CLI so you can search conversations, manage facts and todos, read journals, and get daily summaries — all from within Claude Code.
 
